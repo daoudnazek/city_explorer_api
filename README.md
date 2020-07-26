@@ -21,12 +21,22 @@
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 -->
 
-Number and name of feature: ________________________________
+Number and name of feature: 1. Repository Set Up
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 30 mins 
 
-Start time: _____
+Start time: 2:10
 
-Finish time: _____
+Finish time: 2:35
 
-Actual time needed to complete: _____
+Actual time needed to complete: 25 mins 
+
+Number and name of feature: 2. Locations: As a user of City Explorer, I want to enter the name of a location so that I can see data about the area of interest to me.
+
+Estimate of time needed to complete: 1 hour 
+
+Start time: 4:25
+
+Finish time: 5:10
+
+Actual time needed to complete: 45 mins 
