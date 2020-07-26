@@ -26,9 +26,9 @@ app.get('/weather', (request, response) => {
     response.status(200).send(weatherArr);
 })
 
-// app.all('*', (request,response) => {
-//     response.status(404).send('this page doesn`t exist !!');
-// })
+app.all('*', (request,response) => {
+    response.status(500).send('this page doesn`t exist !!');
+})
 
 app.listen(PORT, () => {
     console.log('server is listening to port ', PORT);
@@ -37,7 +37,7 @@ app.listen(PORT, () => {
 
 function Location(city, data) {
     this.search_query = city;
-    this.formatted_querry = data[0].display_name;
+    this.formatted_query = data[0].display_name;
     this.latitude = data[0].lat;
     this.longitude = data[0].lon;
 }
