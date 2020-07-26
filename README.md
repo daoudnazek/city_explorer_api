@@ -40,3 +40,14 @@ Start time: 4:25
 Finish time: 5:10
 
 Actual time needed to complete: 45 mins 
+
+
+Number and name of feature: 3. Weather: As a user, I want to request current weather information so that I can learn more about the typical weather patterns in the location I had entered.
+
+Estimate of time needed to complete: 1 hour 
+
+Start time: 8:00
+
+Finish time: 8:35
+
+Actual time needed to complete: 35 mins 

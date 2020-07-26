@@ -9,26 +9,40 @@ app.use(cors());
 
 const PORT = process.env.PORT || 3500;
 
-app.get('/location' , (request,response) => {
-    const data = require ('./data/location.json');
+app.get('/location', (request, response) => {
+    const data = require('./data/location.json');
     let city = request.query.city;
     let locationData = new Location(city, data);
     response.status(200).send(locationData);
 })
 
+app.get('/weather', (request, response) => {
+    const dataOfWeather = require('./data/weather.json');
+    let weatherArr = [];
+    dataOfWeather.data.forEach(e => {
+        let weatherData = new Weather(e);
+        weatherArr.push(weatherData);
+    })
+    response.status(200).send(weatherArr);
+})
 
 // app.all('*', (request,response) => {
 //     response.status(404).send('this page doesn`t exist !!');
 // })
 
 app.listen(PORT, () => {
-    console.log('server is listening to port ',PORT);
+    console.log('server is listening to port ', PORT);
 });
 
 
-function Location(city, data){
+function Location(city, data) {
     this.search_query = city;
     this.formatted_querry = data[0].display_name;
     this.latitude = data[0].lat;
     this.longitude = data[0].lon;
+}
+
+function Weather(data) {
+    this.forecast = data.weather.description;
+    this.time = data.valid_date;
 }
