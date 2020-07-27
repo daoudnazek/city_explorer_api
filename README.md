@@ -21,6 +21,8 @@
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 -->
 
+Lab 06 
+
 Number and name of feature: 1. Repository Set Up
 
 Estimate of time needed to complete: 30 mins 
@@ -65,3 +67,17 @@ Finish time: 9:15
 Actual time needed to complete: 25 mins 
 
 
+---------------------------------------------------------------------------------------------------------
+
+Lab 07 
+
+1. Data formatting: As a user, I want the application to provide properly formatted data so that I can view similar data for any location I choose.
+
+Estimate of time needed to complete: 20 mins
+
+Start time: 1:30
+
+Finish time: 
+
+Actual time needed to complete: 
+ 
