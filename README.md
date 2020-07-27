@@ -71,13 +71,25 @@ Actual time needed to complete: 25 mins
 
 Lab 07 
 
-1. Data formatting: As a user, I want the application to provide properly formatted data so that I can view similar data for any location I choose.
+Number and name of feature: 1. Data formatting: As a user, I want the application to provide properly formatted data so that I can view similar data for any location I choose.
 
 Estimate of time needed to complete: 20 mins
 
 Start time: 1:30
 
-Finish time: 
+Finish time: 1:45
 
-Actual time needed to complete: 
+Actual time needed to complete: 15 mins
+
+
+Number and name of feature: 2. Locations: As a user, I want to enter the name of a location so that I do not need to look up the latitude and longitude every time I learn about a new location.
+
+Estimate of time needed to complete: 1 hour 
+Start time: 2:00
+
+Finish time: 2:10
+
+Actual time needed to complete: 1 hour 10 mins
+
+
  
