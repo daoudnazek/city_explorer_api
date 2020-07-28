@@ -30,12 +30,15 @@ function locationData(city) {
     })
 };
 
+var locationLatlon = [];
+console.log(locationLatlon);
+
 //Weather 
 
 app.get('/weather', getWeather);
 
 function getWeather(request, response) {
-    weatherData(weather).then(returnedData => {
+    weatherData().then(returnedData => {
         response.status(200).send(returnedData);
     })
 
@@ -43,10 +46,11 @@ function getWeather(request, response) {
 
 function weatherData() {
     let APIKEY = process.env.WEATHER_API_KEY;
-    let url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=38.123&lon=-78.543&key=${APIKEY}`
-    return superagent.get(url).then(element => {
-        let weatherArr = element.data.map(e => new Weather(e));
-        return weatherArr;
+    let url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${locationLatlon[0]}&lon=${locationLatlon[1]}&key=${APIKEY}`
+    return superagent.get(url).then(data => {
+        let weatherData = JSON.parse(data.text);
+        let weatherArr = weatherData.data.map(e => new Weather(e));
+        return weatherArr.splice(0,8);
     })
 };
 
@@ -64,6 +68,10 @@ function Location(city, data) {
     this.formatted_query = data[0].display_name;
     this.latitude = data[0].lat;
     this.longitude = data[0].lon;
+    
+    locationLatlon[0]= data[0].lat;
+    locationLatlon[1]= data[0].lon;
+
 }
 
 function Weather(data) {
