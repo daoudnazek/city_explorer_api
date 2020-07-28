@@ -31,7 +31,7 @@ function locationData(city) {
 };
 
 var locationLatlon = [];
-console.log(locationLatlon);
+
 
 //Weather 
 
@@ -53,6 +53,29 @@ function weatherData() {
         return weatherArr.splice(0,8);
     })
 };
+
+
+//Trails
+
+app.get('/trails', getTrails);
+
+function getTrails(request, response) {
+    trailsData().then(returnedData => {
+        response.status(200).send(returnedData);
+    })
+
+};
+
+function trailsData() {
+    let APIKEY = process.env.TRAIL_API_KEY;
+    let url = `https://www.hikingproject.com/data/get-trails?lat=${locationLatlon[0]}&lon=${locationLatlon[1]}&maxDistance=10&key=${APIKEY}`
+    return superagent.get(url).then(data => {
+        let trailsData = JSON.parse(data.text);
+        let trailsArr = trailsData.trails.map(e => new Trails(e));
+        return trailsArr;
+    })
+};
+
 
 app.all('*', (request, response) => {
     response.status(500).send('this page doesn`t exist !!');
@@ -77,4 +100,17 @@ function Location(city, data) {
 function Weather(data) {
     this.forecast = data.weather.description;
     this.time = data.valid_date;
+}
+
+function Trails(data){
+    this.name = data.name;
+    this.location = data.location;
+    this.length = data.length;
+    this.stars = data.stars;
+    this.starVotes = data.star_votes;
+    this.summary = data.summary;
+    this.trailUrl = data.trail_url;
+    this.conditions = data.conditions;
+    this.conditionData = data.condition_data;
+    this.conditionTime = data.condition_time;
 }
