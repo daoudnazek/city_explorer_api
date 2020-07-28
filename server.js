@@ -10,6 +10,8 @@ app.use(cors());
 
 const PORT = process.env.PORT || 3500;
 
+//Location 
+
 app.get('/location', getLocation);
 
 function getLocation(request, response) {
@@ -17,7 +19,6 @@ function getLocation(request, response) {
     locationData(city).then(returnedData => {
         response.status(200).send(returnedData);
     })
-
 };
 
 function locationData(city) {
@@ -29,11 +30,29 @@ function locationData(city) {
     })
 };
 
-app.get('/weather', (request, response) => {
-    const dataOfWeather = require('./data/weather.json');
-    let weatherArr = dataOfWeather.data.map(e => new Weather(e));
-    response.status(200).send(weatherArr);
-})
+var locationLatlon = [];
+console.log(locationLatlon);
+
+//Weather 
+
+app.get('/weather', getWeather);
+
+function getWeather(request, response) {
+    weatherData().then(returnedData => {
+        response.status(200).send(returnedData);
+    })
+
+};
+
+function weatherData() {
+    let APIKEY = process.env.WEATHER_API_KEY;
+    let url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${locationLatlon[0]}&lon=${locationLatlon[1]}&key=${APIKEY}`
+    return superagent.get(url).then(data => {
+        let weatherData = JSON.parse(data.text);
+        let weatherArr = weatherData.data.map(e => new Weather(e));
+        return weatherArr.splice(0,8);
+    })
+};
 
 app.all('*', (request, response) => {
     response.status(500).send('this page doesn`t exist !!');
@@ -49,6 +68,10 @@ function Location(city, data) {
     this.formatted_query = data[0].display_name;
     this.latitude = data[0].lat;
     this.longitude = data[0].lon;
+    
+    locationLatlon[0]= data[0].lat;
+    locationLatlon[1]= data[0].lon;
+
 }
 
 function Weather(data) {
