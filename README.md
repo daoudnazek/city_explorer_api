@@ -87,9 +87,62 @@ Number and name of feature: 2. Locations: As a user, I want to enter the name of
 Estimate of time needed to complete: 1 hour 
 Start time: 2:00
 
-Finish time: 2:10
+Finish time: 3:10
 
 Actual time needed to complete: 1 hour 10 mins
+
+
+Number and name of feature: 3. Weather: As a user, I want to request current weather information at any location, so that I can learn more about the typical weather patterns in the area of interest.
+
+Estimate of time needed to complete: 1 hour 30 mins 
+Start time: 5:00
+
+Finish time: 6:55
+
+Actual time needed to complete: 1 hour 55 mins
+
+
+Number and name of feature: 4. Trails: As a user, I want to request information about trails and campgrounds in the area so that users can explore the location.
+
+Estimate of time needed to complete: 1 hour 
+Start time: 7:00
+
+Finish time: 7:45
+
+Actual time needed to complete: 45 mins
+
+---------------------------------------------------------------------------------------------------------
+
+Lab 08
+
+Number and name of feature: 1. Database: As a user, I want the application to perform quickly, so that I can search for locations frequently and reliably.
+
+Estimate of time needed to complete: 30 mins
+Start time: 10:50
+
+Finish time: 11:10
+
+Actual time needed to complete: 20 mins
+
+
+Number and name of feature: 2. Server: As a user, I want the application to perform quickly so that I can search for locations frequently and reliably.
+
+Estimate of time needed to complete: 45 mins
+Start time: 11:10
+
+Finish time: 12:30
+
+Actual time needed to complete: 1 hour 20 mins
+
+
+Number and name of feature: 3. Deploy: As a user, I want the application to perform quickly so that I can search for locations frequently and reliably.
+
+Estimate of time needed to complete: 45 mins
+Start time: 11:10
+
+Finish time: 12:30
+
+Actual time needed to complete: 1 hour 20 mins
 
 
  
