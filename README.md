@@ -137,12 +137,26 @@ Actual time needed to complete: 1 hour 20 mins
 
 Number and name of feature: 3. Deploy: As a user, I want the application to perform quickly so that I can search for locations frequently and reliably.
 
-Estimate of time needed to complete: 45 mins
-Start time: 11:10
+Estimate of time needed to complete: 30 mins
+Start time: 12:40
 
-Finish time: 12:30
+Finish time: 12:55
 
-Actual time needed to complete: 1 hour 20 mins
+Actual time needed to complete: 15 mins 
+
+---------------------------------------------------------------------------------------------------------
+
+Lab 09 
+
+Number and name of feature: 1. Movies: As a user, I want to request information about movies that are connected to the area, so that users can learn more about the location.
+
+Estimate of time needed to complete: 30 mins
+Start time: 3:25
+
+Finish time: 
+
+Actual time needed to complete: 15 mins 
+
 
 
  
