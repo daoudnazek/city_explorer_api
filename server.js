@@ -91,6 +91,50 @@ function trailsData(lon, lat) {
     })
 };
 
+// Movies 
+
+app.get('/movies', getMovies);
+
+function getMovies(request, response) {
+    let region = request.query.country_code;
+    moviesData(region).then(returnedData => {
+        response.status(200).send(returnedData);
+    })
+};
+
+function moviesData(region) {
+    let APIKEY = process.env.MOVIE_API_KEY;
+    let url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${APIKEY}&language=en-US&page=1`;
+    return superagent.get(url).then(data => {
+     
+        let moviesData = data.body.results;
+        let moviesArr = moviesData.map(e => new Movies(e));
+        console.log(moviesArr);
+        return moviesArr;
+    });
+};
+
+// yelp 
+
+app.get('/yelp', getYelp);
+
+function getYelp(request, response) {
+    let lon = request.query.longitude;
+    let lat = request.query.latitude;
+    yelpData(lon, lat).then(returnedData => {
+        response.status(200).send(returnedData);
+    })
+};
+
+function yelpData(lon, lat) {
+    let APIKEY = process.env.YELP_API_KEY;
+    let url = `https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${lat}&longitude=${lon}`;
+    return superagent.get(url).set('Authorization', `Bearer ${APIKEY}`).then(data => {
+        let yelpData = data.body.businesses;
+        let yelpArr = yelpData.map(e => new Yelp(e));
+        return yelpArr;
+    })
+};
 
 app.all('*', (request, response) => {
     response.status(500).send('this page doesn`t exist !!');
@@ -120,6 +164,25 @@ function Trails(data) {
     this.conditionData = data.condition_data;
     this.conditionTime = data.condition_time;
 }
+
+function Movies(data) {
+    this.title = data.title;
+    this.overview = data.overview;
+    this.averageVotes = data.vote_average;
+    this.totalVotes = data.vote_count;
+    this.image_url = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+    this.popularity = data.popularity;
+    this.releasedOn = data.release_date;
+}
+
+function Yelp(data) {
+    this.name = data.name;
+    this.image_url = data.image_url;
+    this.price = data.price;
+    this.rating = data.rating;
+    this.url = data.url;
+  }
+
 
 client.connect().then(() => {
     app.listen(PORT, () => {
