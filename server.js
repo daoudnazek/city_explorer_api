@@ -96,20 +96,17 @@ function trailsData(lon, lat) {
 app.get('/movies', getMovies);
 
 function getMovies(request, response) {
-    let region = request.query.country_code;
-    moviesData(region).then(returnedData => {
+    moviesData().then(returnedData => {
         response.status(200).send(returnedData);
     })
 };
 
-function moviesData(region) {
+function moviesData() {
     let APIKEY = process.env.MOVIE_API_KEY;
     let url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${APIKEY}&language=en-US&page=1`;
     return superagent.get(url).then(data => {
-     
         let moviesData = data.body.results;
         let moviesArr = moviesData.map(e => new Movies(e));
-        console.log(moviesArr);
         return moviesArr;
     });
 };
@@ -121,15 +118,23 @@ app.get('/yelp', getYelp);
 function getYelp(request, response) {
     let lon = request.query.longitude;
     let lat = request.query.latitude;
-    yelpData(lon, lat).then(returnedData => {
+    let page = request.query.page;
+    yelpData(lon, lat, page).then(returnedData => {
         response.status(200).send(returnedData);
     })
 };
 
-function yelpData(lon, lat) {
+function yelpData(lon, lat, page) {
     let APIKEY = process.env.YELP_API_KEY;
-    let url = `https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${lat}&longitude=${lon}`;
-    return superagent.get(url).set('Authorization', `Bearer ${APIKEY}`).then(data => {
+    let offset = (page - 1) * 5;
+    let url = `https://api.yelp.com/v3/businesses/search?term=restaurants`;
+    let queryParams = {
+        'latitude' : lat,
+        'longitude' : lon,
+        'limit' : 5,
+        'offset' : offset,
+    };
+    return superagent.get(url).set('Authorization', `Bearer ${APIKEY}`).query(queryParams).then(data => {
         let yelpData = data.body.businesses;
         let yelpArr = yelpData.map(e => new Yelp(e));
         return yelpArr;
